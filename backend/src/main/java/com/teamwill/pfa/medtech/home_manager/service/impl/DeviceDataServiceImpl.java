@@ -1,8 +1,6 @@
 package com.teamwill.pfa.medtech.home_manager.service.impl;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.teamwill.pfa.medtech.home_manager.dto.CommandDto;
-import com.teamwill.pfa.medtech.home_manager.dto.DeviceDataRequest;
 import com.teamwill.pfa.medtech.home_manager.dto.QueueCommandRequest;
 import com.teamwill.pfa.medtech.home_manager.entity.Command;
 import com.teamwill.pfa.medtech.home_manager.entity.CommandStatus;
@@ -24,18 +22,12 @@ public class DeviceDataServiceImpl implements DeviceDataService {
 
     private final DeviceRepository deviceRepository;
     private final CommandRepository commandRepository;
-    private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public void receiveData(Long deviceId, DeviceDataRequest request) {
+    public void receiveData(Long deviceId, String rawReadingsJson) {
         Device device = deviceRepository.findById(deviceId)
                 .orElseThrow(() -> new ResourceNotFoundException("Device not found with id: " + deviceId));
-        try {
-            String json = objectMapper.writeValueAsString(request.getReadings());
-            device.setData(json);
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to serialize device readings", e);
-        }
+        device.setData(rawReadingsJson);
         deviceRepository.save(device);
     }
 
