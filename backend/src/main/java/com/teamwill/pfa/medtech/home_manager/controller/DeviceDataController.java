@@ -2,7 +2,6 @@ package com.teamwill.pfa.medtech.home_manager.controller;
 
 import com.teamwill.pfa.medtech.home_manager.dto.AckCommandRequest;
 import com.teamwill.pfa.medtech.home_manager.dto.CommandDto;
-import com.teamwill.pfa.medtech.home_manager.dto.DeviceDataRequest;
 import com.teamwill.pfa.medtech.home_manager.dto.QueueCommandRequest;
 import com.teamwill.pfa.medtech.home_manager.service.DeviceDataService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +19,8 @@ public class DeviceDataController {
     private final DeviceDataService deviceDataService;
 
     @PostMapping("/{id}/data")
-    public ResponseEntity<Void> receiveData(@PathVariable Long id, @RequestBody DeviceDataRequest request) {
-        deviceDataService.receiveData(id, request);
+    public ResponseEntity<Void> receiveData(@PathVariable Long id, @RequestBody String rawBody) {
+        deviceDataService.receiveData(id, rawBody);
         return ResponseEntity.ok().build();
     }
 
