@@ -25,7 +25,7 @@ public abstract class Device {
     private String name;
 
     @Column(nullable = false)
-    private Long unit;
+    private String unit;
 
     @Column(nullable = false)
     private String status;

@@ -6,17 +6,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.time.Instant;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
+public class ReadingDto {
     private Long id;
-    private String name;
-    private String email;
-    private String phoneNumber;
-    private List<String> roles;
+    private Long deviceId;
+    private Instant recordedAt;
+    private String data;
 }

@@ -2,6 +2,7 @@ package com.teamwill.pfa.medtech.home_manager.service;
 
 import com.teamwill.pfa.medtech.home_manager.dto.CommandDto;
 import com.teamwill.pfa.medtech.home_manager.dto.QueueCommandRequest;
+import com.teamwill.pfa.medtech.home_manager.dto.ReadingDto;
 
 import java.util.List;
 
@@ -10,4 +11,6 @@ public interface DeviceDataService {
     List<CommandDto> getPendingCommands(Long deviceId);
     void acknowledgeCommand(Long deviceId, Long commandId, String status);
     CommandDto queueCommand(Long deviceId, QueueCommandRequest request);
+    List<CommandDto> getAllCommands(int limit);
+    List<ReadingDto> getReadings(Long deviceId, int limit);
 }

@@ -14,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 public abstract class DeviceDto {
     private Long id;
     private String name;
-    private Long unit;
+    private String unit;
     private String status;
     private String data;
 }
